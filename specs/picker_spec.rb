@@ -1,4 +1,5 @@
 require('minitest/autorun')
+require('minitest/rg')
 require('pry-byebug')
 require_relative('../Picker.rb')
 class PickerTest < Minitest::Test
