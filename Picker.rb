@@ -91,20 +91,24 @@ def group_by_bay(arr, arrange=true)
         end
     end
     if arrange
-        temp_for_a = []
-        for a in bays[0].reverse()
-            temp_for_a << a
-        end
-        answer_arr = [temp_for_a,bays[2],bays[1]]
-        for b_i in 3..bays.length
-            if bays[b_i] != nil && bays[b_i] != []
-                answer_arr << bays[b_i]
-            end
-        end
-        return answer_arr.flatten()
+        return arrange_in_picking_order(bays)
     else
         return grouped_arr
     end
+end
+
+def arrange_in_picking_order(bays)
+    temp_for_a = []
+    for a in bays[0].reverse()
+        temp_for_a << a
+    end
+    answer_arr = [temp_for_a,bays[2],bays[1]]
+    for b_i in 3..bays.length
+        if bays[b_i] != nil && bays[b_i] != []
+            answer_arr << bays[b_i]
+        end
+    end
+    return answer_arr.flatten()
 end
 
 def find_item_index(sym, item_string)
@@ -139,12 +143,12 @@ def calc_dist_bays(bays_list)
     return (bay_index_list.max - bay_index_list.min)
 end
 
-def get_bay_list()
+def get_bay_list(reverse_a = true)
     bays_name_list = []
     for n in 1..10
         bays_name_list << "a#{n}"
     end
-    bays_name_list = bays_name_list.reverse()
+    bays_name_list = bays_name_list.reverse() if reverse_a
     for l in ["c", "b"]
         for n in 1..10
             bays_name_list << "#{l}#{n}"
@@ -160,10 +164,9 @@ end
 
 def print_collection_map(item_or_bays)
 
-    if bays = order_bays_by_picking_from_bays(item_or_bays)
-        puts "test".magenta
-    end
-    bays_name_list = get_bay_list()
+    # bays = order_bays_by_picking_from_bays(item_or_bays)
+    bays = order_bays_by_picking_from_items(item_or_bays)
+    bays_name_list = get_bay_list(false)
 
     print "\n\n\n     "
 
@@ -192,5 +195,12 @@ def print_collection_map(item_or_bays)
         print bays_name_list[ab+20] == 2 ? " #{bays_name_list[ab+20]}" : "#{bays_name_list[ab+20]}"
         print "\n"
     end
+    print "\n"
 
 end
+
+
+
+
+# ********** Being called to print out map ************
+# print_collection_map([wertyui])

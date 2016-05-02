@@ -66,12 +66,9 @@ class PickerTest < Minitest::Test
         assert_equal(actual_result,test_result)
     end
 
-    # *************** EXTRA ***************
-
-    def test_print_collection_map() # task 5
-        test_result = print_collection_map("b3, c7, c9, a3")
-        actual_result = [["picture frame", "paint brush", "shoe lace", "blouse"], 15]
+    def test_print_collection_map() # task 6
+        test_result = print_collection_map("hanger, deodorant, candy wrapper, rubber band")
+        actual_result = ["a10", "a4", "c8", "b9"]
         assert_equal(actual_result,test_result)
     end
-
 end
